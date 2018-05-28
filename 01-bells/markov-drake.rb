@@ -12,12 +12,12 @@ S_ON_MY = 3
 
 LEVELS = {
   hats: 1.5,
-  ##| snares: 1.5,
-  ##| kicks: 3.0,
+  snares: 1.5,
+  kicks: 3.0,
   right: 1.25,
   left: 1.5,
-  ##| subbass: 2.5,
-  ##| drake: 1.5
+  subbass: 2.5,
+  drake: 1.5
 }
 
 # This hash simulates a markov chain.
@@ -95,10 +95,10 @@ live_loop :drake1 do
   with_fx :level, amp: LEVELS[:drake] || 0 do
     with_fx :reverb, mix: 0.5, room: 0.4 do
       with_fx :echo, mix: 0.8, decay: 0.25 do
-        sample SAMPLES, S_CALL_ME, rate: 7.0/8, amp: 8
-        ##| sample SAMPLES, S_YOU_USED_TO, rate: 7.0/8, amp: 8
-        ##| sample SAMPLES, S_CHORUS, rate: 7.0/8, amp: 4.5
-        ##| sample SAMPLES, S_ON_MY, rate: 7.0/8, amp: 8
+        # sample SAMPLES, S_CALL_ME, rate: 7.0/8, amp: 8
+        sample SAMPLES, S_YOU_USED_TO, rate: 7.0/8, amp: 8
+        # sample SAMPLES, S_CHORUS, rate: 7.0/8, amp: 4.5
+        # sample SAMPLES, S_ON_MY, rate: 7.0/8, amp: 8
       end
     end
   end
@@ -111,7 +111,7 @@ live_loop :right do
     with_fx :reverb, mix: 0.8, room: 0.8 do
       with_fx :echo, mix: 0.2 do
         use_synth :pretty_bell
-        ##| use_synth :fm
+        # use_synth :fm
         n1 = S[markov(gg, H)] + 12 # choose 1st random note in scale
         n2 = S[markov(gg, H)] + 12 # choose 2nd random note in scale
         d = d1.choose # choose random duration
