@@ -12,12 +12,12 @@ S_ON_MY = 3
 
 LEVELS = {
   hats: 1.5,
-  snares: 1.5,
-  kicks: 3.0,
+  ##| snares: 1.5,
+  ##| kicks: 3.0,
   right: 1.25,
   left: 1.5,
   ##| subbass: 2.5,
-  drake: 1.5
+  ##| drake: 1.5
 }
 
 # This hash simulates a markov chain.
@@ -134,9 +134,9 @@ live_loop :left do
     with_fx :reverb, mix: 0.8, room: 0.8 do
       with_fx :echo, mix: 0.5 do
         s markov(gg, H) # update the state using markov chaining
-        pplay (S[gg] - 24), M/8
+        pplay (S[gg] - 12), M/8
         sleep (M / 4) + (M / 8)
-        pplay (S[gg - 5] - 24), M/8
+        pplay (S[gg - 5] - 12), M/8
         sleep (M / 4) - (M / 8)
       end
     end
@@ -144,7 +144,7 @@ live_loop :left do
 end
 
 live_loop :subbass do
-  n = g - 12
+  n = g - 24
   d = (sb.tick * 0.01) - 0.01
   with_fx :level, amp: LEVELS[:subbass] || 0 do
     with_fx :reverb, mix: 0.8 do
